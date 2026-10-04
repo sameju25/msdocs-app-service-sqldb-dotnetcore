@@ -7,6 +7,7 @@ if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDbContext<MyDatabaseContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection")));
+}
 else
 {
     builder.Services.AddDbContext<MyDatabaseContext>(options =>
