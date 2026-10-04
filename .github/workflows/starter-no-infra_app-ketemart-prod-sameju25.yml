@@ -23,20 +23,20 @@ jobs:
         with:
           dotnet-version: '10.x'
 
-      - name: Build with dotnet
+           - name: Build with dotnet
         run: dotnet build --configuration Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
-        - name: Install EF Core tools
-  run: dotnet tool install -g dotnet-ef --version 10.*
+      - name: Install EF Core tools
+        run: dotnet tool install -g dotnet-ef --version 10.*
 
-- name: Restore Linux runtime assets
-  run: dotnet restore --runtime linux-x64
+      - name: Restore Linux runtime assets
+        run: dotnet restore --runtime linux-x64
 
-- name: Generate migrations bundle
-  run: dotnet ef migrations bundle --runtime linux-x64 -o ${{env.DOTNET_ROOT}}/myapp/migrationsbundle
+      - name: Generate migrations bundle
+        run: dotnet ef migrations bundle --runtime linux-x64 -o ${{env.DOTNET_ROOT}}/myapp/migrationsbundle
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
